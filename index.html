@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日日报 - 2026年5月29日</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-card-hover: #22222f;
+            --gold: #d4a853;
+            --gold-light: #e8c97a;
+            --gold-dim: #8a6d2b;
+            --text-primary: #e8e6e1;
+            --text-secondary: #9a978f;
+            --text-dim: #5a5850;
+            --green: #4ade80;
+            --red: #f87171;
+            --blue: #60a5fa;
+            --border: rgba(212, 168, 83, 0.15);
+            --border-strong: rgba(212, 168, 83, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 0%, rgba(212, 168, 83, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(212, 168, 83, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Noise overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 900;
+            font-size: 16px;
+            color: var(--bg-primary);
+        }
+
+        .nav-brand-text {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+            border-color: var(--border);
+            background: rgba(212, 168, 83, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--gold);
+            border-color: var(--border-strong);
+            background: rgba(212, 168, 83, 0.08);
+        }
+
+        /* Header */
+        .header {
+            padding: 60px 0 40px;
+            text-align: center;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-date {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 14px;
+            color: var(--gold);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .header-lunar {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .header-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: 8px;
+            margin-bottom: 8px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--text-dim);
+            letter-spacing: 4px;
+        }
+
+        .header-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 32px auto;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-icon.fund { background: rgba(74, 222, 128, 0.1); }
+        .section-icon.weather { background: rgba(96, 165, 250, 0.1); }
+        .section-icon.news { background: rgba(212, 168, 83, 0.1); }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .section-date {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+
+        /* Fund Cards */
+        .fund-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .fund-grid { grid-template-columns: 1fr; }
+            .header-title { font-size: 32px; letter-spacing: 4px; }
+            .nav-links { display: none; }
+        }
+
+        .fund-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fund-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .fund-card:hover::before { opacity: 1; }
+
+        .fund-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+
+        .fund-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .fund-code {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            font-family: monospace;
+        }
+
+        .fund-nav {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .fund-nav-value {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+
+        .fund-nav-change {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .fund-nav-change.up {
+            color: var(--green);
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .fund-nav-change.flat {
+            color: var(--text-secondary);
+            background: rgba(154, 151, 143, 0.1);
+        }
+
+        .fund-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .fund-detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .fund-detail-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .fund-detail-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .fund-detail-value.highlight {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        /* Fund Summary */
+        .fund-summary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fund-summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .fund-summary-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .fund-summary-value {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .fund-summary-value.total {
+            color: var(--gold);
+            font-size: 24px;
+        }
+
+        /* Weather */
+        .weather-main {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .weather-temp-block {
+            text-align: center;
+        }
+
+        .weather-icon {
+            font-size: 56px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 4px 12px rgba(212, 168, 83, 0.2));
+        }
+
+        .weather-condition {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .weather-temp-range {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .weather-temp-range span {
+            font-weight: 700;
+        }
+
+        .weather-temp-range .high { color: var(--gold-light); }
+        .weather-temp-range .low { color: var(--blue); }
+
+        .weather-details {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .weather-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .weather-detail-icon {
+            font-size: 18px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .weather-detail-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .weather-detail-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .weather-detail-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .weather-alert {
+            margin-top: 16px;
+            padding: 14px 20px;
+            background: rgba(74, 222, 128, 0.05);
+            border: 1px solid rgba(74, 222, 128, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--green);
+        }
+
+        /* News */
+        .news-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .news-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-strong);
+            transform: translateX(4px);
+        }
+
+        .news-rank {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--gold-dim);
+            min-width: 36px;
+            text-align: center;
+            line-height: 1;
+            padding-top: 4px;
+        }
+
+        .news-content {
+            flex: 1;
+        }
+
+        .news-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .news-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .news-title a:hover {
+            color: var(--gold);
+        }
+
+        .news-summary {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .news-source {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        .news-source a {
+            color: var(--gold-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .news-source a:hover {
+            color: var(--gold);
+        }
+
+        /* Trend Comment */
+        .trend-box {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(212, 168, 83, 0.02));
+            border: 1px solid var(--border-strong);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .trend-box::before {
+            content: '"';
+            font-family: 'Noto Serif SC', serif;
+            font-size: 64px;
+            color: var(--gold-dim);
+            opacity: 0.3;
+            position: absolute;
+            top: -8px;
+            left: 16px;
+            line-height: 1;
+        }
+
+        .trend-label {
+            font-size: 12px;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .trend-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 8px;
+        }
+
+        /* Archive Section */
+        .archive-section {
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .archive-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .archive-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .archive-item {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .archive-item:hover {
+            border-color: var(--gold-dim);
+            color: var(--gold);
+            background: rgba(212, 168, 83, 0.05);
+        }
+
+        .archive-item.current {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(212, 168, 83, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 64px;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--gold);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dim);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        /* Home button */
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(212, 168, 83, 0.08);
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .home-btn:hover {
+            background: rgba(212, 168, 83, 0.15);
+            border-color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .weather-main {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .weather-details {
+                grid-template-columns: 1fr;
+            }
+            .fund-summary {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .news-item {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .news-rank {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="https://boss2356.github.io/" class="nav-brand">
+                <div class="nav-brand-icon">日</div>
+                <span class="nav-brand-text">每日日报</span>
+            </a>
+            <div class="nav-links">
+                <a href="#fund" class="nav-link">债券</a>
+                <a href="#weather" class="nav-link">天气</a>
+                <a href="#news" class="nav-link">AI新闻</a>
+                <a href="#archive" class="nav-link">归档</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-date">DAILY REPORT</div>
+            <div class="header-lunar">农历丙午年 四月十三 · 星期五</div>
+            <h1 class="header-title">每 日 日 报</h1>
+            <p class="header-subtitle">2026年5月29日 · 债券 · 天气 · AI行业</p>
+            <div class="header-divider"></div>
+        </header>
+
+        <!-- Fund Section -->
+        <section class="section" id="fund">
+            <div class="section-header">
+                <div class="section-icon fund">📈</div>
+                <h2 class="section-title">债券追踪</h2>
+                <span class="section-date">数据更新至 2026-05-29</span>
+            </div>
+
+            <div class="fund-grid">
+                <!-- Fund 1 -->
+                <div class="fund-card">
+                    <div class="fund-name">嘉实90天滚动持有短债C</div>
+                    <div class="fund-code">015405</div>
+                    <div class="fund-nav">
+                        <span class="fund-nav-value">1.1016</span>
+                        <span class="fund-nav-change flat">0.00%</span>
+                    </div>
+                    <div class="fund-details">
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">持有金额</span>
+                            <span class="fund-detail-value highlight">521.37 元</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">近1月涨幅</span>
+                            <span class="fund-detail-value" style="color: var(--green);">+0.14%</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">近1年涨幅</span>
+                            <span class="fund-detail-value" style="color: var(--green);">+1.47%</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">净值日期</span>
+                            <span class="fund-detail-value">05-26</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">基金规模</span>
+                            <span class="fund-detail-value">34.50亿</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">基金经理</span>
+                            <span class="fund-detail-value">李曈</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fund 2 -->
+                <div class="fund-card">
+                    <div class="fund-name">汇添富稳福60天滚动持有中短债C</div>
+                    <div class="fund-code">014595</div>
+                    <div class="fund-nav">
+                        <span class="fund-nav-value">1.1016</span>
+                        <span class="fund-nav-change up">+0.01%</span>
+                    </div>
+                    <div class="fund-details">
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">持有金额</span>
+                            <span class="fund-detail-value highlight">500.45 元</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">近1月涨幅</span>
+                            <span class="fund-detail-value" style="color: var(--green);">+0.15%</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">近1年涨幅</span>
+                            <span class="fund-detail-value" style="color: var(--green);">+1.53%</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">净值日期</span>
+                            <span class="fund-detail-value">05-29</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">基金规模</span>
+                            <span class="fund-detail-value">24.28亿</span>
+                        </div>
+                        <div class="fund-detail-item">
+                            <span class="fund-detail-label">基金经理</span>
+                            <span class="fund-detail-value">徐寅喆 等</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fund Summary -->
+            <div class="fund-summary">
+                <div class="fund-summary-item">
+                    <span class="fund-summary-label">总持有金额</span>
+                    <span class="fund-summary-value total">1,021.82 元</span>
+                </div>
+                <div class="fund-summary-item">
+                    <span class="fund-summary-label">今日涨跌估算</span>
+                    <span class="fund-summary-value" style="color: var(--green);">+0.05 元</span>
+                </div>
+                <div class="fund-summary-item">
+                    <span class="fund-summary-label">近1月收益估算</span>
+                    <span class="fund-summary-value" style="color: var(--green);">+1.49 元</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 12px; text-align: center;">
+                <a href="https://fund.eastmoney.com/015405.html" target="_blank" style="color: var(--text-dim); font-size: 12px; text-decoration: none;">查看嘉实短债详情 ↗</a>
+                <span style="color: var(--text-dim); margin: 0 12px;">|</span>
+                <a href="https://fund.eastmoney.com/014595.html" target="_blank" style="color: var(--text-dim); font-size: 12px; text-decoration: none;">查看汇添富稳福详情 ↗</a>
+            </div>
+        </section>
+
+        <!-- Weather Section -->
+        <section class="section" id="weather">
+            <div class="section-header">
+                <div class="section-icon weather">🌤</div>
+                <h2 class="section-title">额尔古纳天气</h2>
+                <span class="section-date">2026年5月29日</span>
+            </div>
+
+            <div class="card">
+                <div class="weather-main">
+                    <div class="weather-temp-block">
+                        <div class="weather-icon">☀️</div>
+                        <div class="weather-condition">晴</div>
+                        <div class="weather-temp-range">
+                            <span class="high">28.8℃</span> / <span class="low">4℃</span>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">💧</span>
+                            <div class="weather-detail-text">
+                                <span class="weather-detail-label">降水概率</span>
+                                <span class="weather-detail-value">极低（无降水）</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">☀️</span>
+                            <div class="weather-detail-text">
+                                <span class="weather-detail-label">紫外线</span>
+                                <span class="weather-detail-value">中等强度</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">💨</span>
+                            <div class="weather-detail-text">
+                                <span class="weather-detail-label">风力</span>
+                                <span class="weather-detail-value">南风 2-4级</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌡</span>
+                            <div class="weather-detail-text">
+                                <span class="weather-detail-label">湿度</span>
+                                <span class="weather-detail-value">38%（优）</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌬</span>
+                            <div class="weather-detail-text">
+                                <span class="weather-detail-label">空气质量</span>
+                                <span class="weather-detail-value" style="color: var(--green);">AQI 31 优</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌅</span>
+                            <div class="weather-detail-text">
+                                <span class="weather-detail-label">日出/日落</span>
+                                <span class="weather-detail-value">03:57 / 19:57</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-alert">
+                    ✅ 今日无自然灾害预警 · 昼夜温差大（约20℃），注意增减衣物 · 午间风力较大可达4级 · 过敏指数极高
+                </div>
+
+                <div style="margin-top: 12px; text-align: center;">
+                    <a href="http://www.nmc.cn/publish/forecast/ASR/ergun.html" target="_blank" style="color: var(--text-dim); font-size: 12px; text-decoration: none;">查看中央气象台详情 ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI News Section -->
+        <section class="section" id="news">
+            <div class="section-header">
+                <div class="section-icon news">🤖</div>
+                <h2 class="section-title">AI 行业热点</h2>
+                <span class="section-date">2026年5月29日</span>
+            </div>
+
+            <!-- News 1 -->
+            <div class="news-item">
+                <div class="news-rank">1</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">Anthropic 完成650亿美元H轮融资，估值飙至9650亿美元登顶全球最贵AI创企</a></h3>
+                    <p class="news-summary">Anthropic宣布完成650亿美元H轮融资，投后估值达9650亿美元，正式超越OpenAI成为全球估值最高的AI初创公司。年化收入运行率已突破470亿美元。</p>
+                    <span class="news-source">来源：<a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">TechStartups</a></span>
+                </div>
+            </div>
+
+            <!-- News 2 -->
+            <div class="news-item">
+                <div class="news-rank">2</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">Anthropic 发布 Claude Opus 4.8，Dynamic Workflows 引领"工作流AI"新范式</a></h3>
+                    <p class="news-summary">距前代仅41天，Anthropic发布旗舰模型Claude Opus 4.8。Dynamic Workflows支持单次会话并行调度数百个子Agent，SWE-Bench Pro达69.2%，编程/推理/Agent能力全面提升。</p>
+                    <span class="news-source">来源：<a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">TechStartups</a> / <a href="http://m.toutiao.com/group/7645115740412002850/" target="_blank">头条AI日报</a></span>
+                </div>
+            </div>
+
+            <!-- News 3 -->
+            <div class="news-item">
+                <div class="news-rank">3</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">OpenAI 秘密提交S-1文件，目标Q4上市估值或达万亿美元</a></h3>
+                    <p class="news-summary">OpenAI已向SEC秘密提交S-1注册文件，计划2026年Q4 IPO，目标估值高达1万亿美元。Q1月收入约20亿美元，但每收入1美元亏损1.22美元。</p>
+                    <span class="news-source">来源：<a href="http://m.toutiao.com/group/7645115740412002850/" target="_blank">头条AI日报</a> / <a href="https://ai4planet.in/global-ai-update-may-23-2026-openai-ipo-anthropic-profit-google-io-gemini/" target="_blank">AI4Planet</a></span>
+                </div>
+            </div>
+
+            <!-- News 4 -->
+            <div class="news-item">
+                <div class="news-rank">4</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">企业因未设置使用限制，单月在Claude AI上意外花费5亿美元</a></h3>
+                    <p class="news-summary">一家企业因未设置Anthropic Claude的API使用限制和支出控制，30天内意外产生高达5亿美元账单，成为AI大规模部署的风险警示案例。</p>
+                    <span class="news-source">来源：<a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">TechStartups / Axios</a></span>
+                </div>
+            </div>
+
+            <!-- News 5 -->
+            <div class="news-item">
+                <div class="news-rank">5</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">Meta 推出付费AI聊天机器人订阅服务，起步价7.99美元/月</a></h3>
+                    <p class="news-summary">Meta推出消费者端AI聊天bot订阅服务，分7.99美元/月和19.99美元/月两档，首批在新加坡等市场上线，为AI数据中心投资开辟广告外的新收入来源。</p>
+                    <span class="news-source">来源：<a href="https://techstartups.com/2026/05/29/top-tech-news-today-may-29-2026/" target="_blank">TechStartups / Bloomberg</a></span>
+                </div>
+            </div>
+
+            <!-- News 6 -->
+            <div class="news-item">
+                <div class="news-rank">6</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://completeaitraining.com/all-ai-news/" target="_blank">Cognition 融资10亿美元估值260亿，AI编程赛道持续升温</a></h3>
+                    <p class="news-summary">AI编程公司Cognition完成10亿美元融资，估值达260亿美元。同时Asana以7500万美元收购无代码AI Agent平台StackAI，企业软件加速整合AI Agent基础设施。</p>
+                    <span class="news-source">来源：<a href="https://completeaitraining.com/all-ai-news/" target="_blank">Complete AI Training</a></span>
+                </div>
+            </div>
+
+            <!-- News 7 -->
+            <div class="news-item">
+                <div class="news-rank">7</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://completeaitraining.com/all-ai-news/" target="_blank">伊利诺伊州通过AI安全法案要求第三方审计，加州SB 574设定律师AI使用新规</a></h3>
+                    <p class="news-summary">美国各州AI监管加速推进。伊利诺伊州通过AI安全法案要求高风险AI系统第三方审计；加州SB 574为律师和仲裁员使用AI设定新规则框架。</p>
+                    <span class="news-source">来源：<a href="https://completeaitraining.com/all-ai-news/" target="_blank">Complete AI Training</a></span>
+                </div>
+            </div>
+
+            <!-- News 8 -->
+            <div class="news-item">
+                <div class="news-rank">8</div>
+                <div class="news-content">
+                    <h3 class="news-title"><a href="https://completeaitraining.com/all-ai-news/" target="_blank">Bayesian Health获FDA首个AI脓毒症监测系统 clearance，Linux基金会推出AI Agent发现开源DNS系统</a></h3>
+                    <p class="news-summary">Bayesian Health成为首家获FDA批准的AI脓毒症实时监测公司。Linux基金会发布面向AI Agent发现的开源DNS系统，为Agent互操作性提供基础设施标准。</p>
+                    <span class="news-source">来源：<a href="https://completeaitraining.com/all-ai-news/" target="_blank">Complete AI Training</a></span>
+                </div>
+            </div>
+
+            <!-- Trend Comment -->
+            <div class="trend-box">
+                <div class="trend-label">今 日 趋 势 点 评</div>
+                <p class="trend-text">
+                    2026年5月29日的AI行业呈现出三大交织趋势：<strong style="color: var(--gold-light);">资本竞速白热化、Agent生态从概念走向工程化、监管框架加速落地。</strong>Anthropic以近万亿美元估值超越OpenAI、两家头部实验室同时冲刺IPO，标志着前沿AI已从传统风投范畴演变为万亿级基础设施金融。Claude Opus 4.8的Dynamic Workflows和Meta的付费订阅则共同指向一个方向——AI竞争的核心正在从"谁更聪明"转向"谁能更可靠地执行复杂工作流并实现商业闭环"。与此同时，企业5亿美元AI账单事故和各州AI安全法案的密集出台提醒我们：随着Agent系统大规模进入生产环境，成本治理和安全审计已成为与模型能力同等重要的行业命题。
+                </p>
+            </div>
+        </section>
+
+        <!-- Archive Section -->
+        <section class="archive-section" id="archive">
+            <h2 class="archive-title">📅 历史归档</h2>
+            <div class="archive-list">
+                <a href="index.html" class="archive-item current">2026-05-29</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="https://www.boss2356.github.io/" class="home-btn">← 返回主页</a>
+            <p class="footer-text" style="margin-top: 20px;">每日自动生成 · 数据来源：天天基金网 / 中央气象台 / 综合新闻</p>
+            <div class="footer-links">
+                <a href="https://boss2356.github.io/" class="footer-link">主页</a>
+                <a href="https://github.com/boss2356/daily-push" class="footer-link">GitHub</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
