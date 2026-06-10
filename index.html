@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日推送 - 2026年6月10日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 16px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .fund-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .fund-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid #667eea;
+        }
+        .fund-item h3 { font-size: 1em; color: #555; margin-bottom: 8px; }
+        .fund-value { font-size: 1.8em; font-weight: bold; color: #333; }
+        .fund-change { font-size: 0.9em; margin-top: 4px; }
+        .positive { color: #e74c3c; }
+        .negative { color: #27ae60; }
+        .weather-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .weather-item {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .weather-item .label { font-size: 0.8em; color: #888; margin-bottom: 4px; }
+        .weather-item .value { font-size: 1.2em; font-weight: bold; color: #333; }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        .news-summary { color: #666; font-size: 0.95em; line-height: 1.5; }
+        .news-source { color: #999; font-size: 0.8em; margin-top: 6px; }
+        .trend-comment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .trend-comment h3 { margin-bottom: 10px; font-size: 1.1em; }
+        .trend-comment p { line-height: 1.6; opacity: 0.95; }
+        .archive-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .archive-link:hover { background: #5a6fd6; }
+        .btn-home {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .btn-home:hover { transform: translateY(-2px); }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+            opacity: 0.8;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            color: #856404;
+        }
+        @media (max-width: 600px) {
+            .fund-grid, .weather-info { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>每日推送</h1>
+            <p>2026年6月10日 星期三 | 农历四月廿五</p>
+        </div>
+
+        <!-- 债券追踪 -->
+        <div class="card">
+            <h2>📊 债券追踪</h2>
+            <div class="fund-grid">
+                <div class="fund-item">
+                    <h3>嘉实90天滚动持有短债C</h3>
+                    <div class="fund-value">1.1022</div>
+                    <div class="fund-change negative">-0.01% (跌0.01元)</div>
+                    <div style="margin-top:8px;font-size:0.85em;color:#666;">
+                        持有金额: 521.37元<br>
+                        估算份额: ~472.84份<br>
+                        昨日净值: 1.1023
+                    </div>
+                </div>
+                <div class="fund-item">
+                    <h3>汇添富稳福60天滚动持有中短债C</h3>
+                    <div class="fund-value">1.1015</div>
+                    <div class="fund-change negative">-0.02% (跌0.02元)</div>
+                    <div style="margin-top:8px;font-size:0.85em;color:#666;">
+                        持有金额: 500.45元<br>
+                        估算份额: ~454.34份<br>
+                        昨日净值: 1.1017
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:16px;padding:12px;background:#f8f9fa;border-radius:8px;">
+                <strong>总收益概览</strong><br>
+                总投资: 1,021.82元 | 今日估算总值: ~1,021.75元 | 今日变动: -0.07元
+            </div>
+        </div>
+
+        <!-- 天气推送 -->
+        <div class="card">
+            <h2>🌤️ 额尔古纳今日天气</h2>
+            <div class="weather-info">
+                <div class="weather-item">
+                    <div class="label">天气状况</div>
+                    <div class="value">阵雨转晴</div>
+                </div>
+                <div class="weather-item">
+                    <div class="label">温度</div>
+                    <div class="value">9~24°C</div>
+                </div>
+                <div class="weather-item">
+                    <div class="label">风力</div>
+                    <div class="value">西北风 1-2级</div>
+                </div>
+                <div class="weather-item">
+                    <div class="label">降水</div>
+                    <div class="value">0.4mm</div>
+                </div>
+                <div class="weather-item">
+                    <div class="label">紫外线</div>
+                    <div class="value">弱</div>
+                </div>
+                <div class="weather-item">
+                    <div class="label">空气质量</div>
+                    <div class="value">优 (PM: 17)</div>
+                </div>
+            </div>
+            <div class="warning-box">
+                <strong>⚠️ 自然灾害预警</strong><br>
+                雷电黄色预警：额尔古纳市气象台6月10日14时15分发布雷电黄色预警信号，6小时内可能发生雷电活动，局部伴有短时强降水、雷暴大风、冰雹等强对流天气。
+            </div>
+            <p style="margin-top:12px;color:#666;font-size:0.9em;">
+                日出: 03:49 | 日落: 20:08 | 湿度: 73% | 体感温度: 10.6°C
+            </p>
+        </div>
+
+        <!-- AI行业热点 -->
+        <div class="card">
+            <h2>🤖 今日AI行业热点</h2>
+            
+            <div class="news-item">
+                <div class="news-title">1. Anthropic发布Claude Fable 5与Mythos 5模型</div>
+                <div class="news-summary">Anthropic推出面向公众的Mythos级模型Claude Fable 5，在软件工程、知识工作、视觉和科学研究生成任务上超越此前所有公开模型。同时发布Mythos 5受限访问版本，面向网络安全和关键基础设施合作伙伴。</div>
+                <div class="news-source">来源: Anthropic官方博客、Business Insider</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">2. Google推出Gemini 3.5 Live Translate实时翻译</div>
+                <div class="news-summary">谷歌发布Gemini 3.5实时语音翻译模型，支持70余种语言自动检测，可将翻译延迟压缩至接近实时，同时保留说话者语调、语速和音高。已面向Google Translate和Google Meet企业用户推出。</div>
+                <div class="news-source">来源: Google官方博客、Google AI Studio</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">3. OpenAI确认提交S-1招股书并推进GPT-5.6</div>
+                <div class="news-summary">OpenAI确认已向SEC提交保密S-1招股书，为未来IPO做准备。同时内部测试GPT-5.6（代号Kindle/Kepler），重点提升前端/UI生成和视觉理解能力，预计本月晚些时候发布。</div>
+                <div class="news-source">来源: OpenAI官方、TechTimes、36氪</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">4. 英伟达4亿美元收购Kumo AI</div>
+                <div class="news-summary">英伟达以超4亿美元收购企业预测式AI初创公司Kumo AI，补齐结构化数据AI短板。Kumo专注企业表格化数据预测，客户包括DoorDash、Reddit、沃尔玛等，三位创始人已入职英伟达。</div>
+                <div class="news-source">来源: The Information、Winbuzzer</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">5. 欧盟AI法案达成Omnibus修订协议</div>
+                <div class="news-summary">欧盟就AI法案达成一揽子修订协议，将高风险AI系统合规义务推迟至2027年，但透明度义务仍按原计划2026年8月生效。新增条款允许处理特殊类别个人数据用于偏见检测。</div>
+                <div class="news-source">来源: Dentons律所、EU Council</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">6. 中国智能算力规模居全球第二</div>
+                <div class="news-summary">截至2026年5月底，全国智能算力总规模超950 EFLOPS，同比增长超60%。全国在建及已投运智算中心超80座，AI核心产业规模突破万亿元，三大运营商及头部云厂商持续加大投资。</div>
+                <div class="news-source">来源: 央视、工信部</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">7. 豆包宣布推出专业版，基础功能保持免费</div>
+                <div class="news-summary">字节跳动旗下豆包发布说明，计划针对专业人群推出豆包专业版，涵盖软件开发、数据分析、专业设计等服务。强调广大用户日常使用的搜索问答、写作生图、语音视频对话等功能保持免费。</div>
+                <div class="news-source">来源: 豆包官方公告</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-title">8. 中国三部门联合印发《智能体规范应用与创新发展实施意见》</div>
+                <div class="news-summary">国家网信办、发改委、工信部联合发布智能体规范应用政策，确立安全可控、规范有序、创新驱动、应用牵引四大原则，标志着中国AI监管从分散细则升级为统一规范体系。</div>
+                <div class="news-source">来源: 国家网信办、CSDN</div>
+            </div>
+
+            <div class="trend-comment">
+                <h3>📈 今日趋势点评</h3>
+                <p>今日AI行业呈现"巨头加速生态扩张、监管框架逐步落地、技术架构持续创新"的三重态势。Anthropic、OpenAI、Google三大实验室在6月集中发布旗舰模型，推理、编码、前端生成成为核心竞争赛道。与此同时，欧盟AI法案修订和中国智能体规范政策表明，全球AI治理正从"鼓励发展"进入"规范发展"阶段，合规能力将成为企业核心竞争力。</p>
+            </div>
+        </div>
+
+        <!-- 归档链接 -->
+        <div class="card" style="text-align:center;">
+            <h2>📁 历史归档</h2>
+            <p style="color:#666;margin-bottom:12px;">查看往日推送记录</p>
+            <a href="archive.html" class="archive-link">进入归档页面</a>
+        </div>
+
+        <div style="text-align:center;">
+            <a href="https://www.boss2356.github.io/" class="btn-home">🏠 返回主页</a>
+        </div>
+
+        <div class="footer">
+            <p>每日自动推送 | 数据来源: 天天基金网、中国天气网、公开新闻资讯</p>
+            <p style="font-size:0.8em;margin-top:8px;">生成时间: 2026-06-10</p>
+        </div>
+    </div>
+</body>
+</html>
