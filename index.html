@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日日报 - 2026年6月12日</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2236;
+            --bg-card-hover: #1e2a42;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --border-light: #334155;
+            --glow-blue: rgba(59, 130, 246, 0.15);
+            --glow-cyan: rgba(6, 182, 212, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Background atmosphere */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse 800px 600px at 20% 10%, rgba(59, 130, 246, 0.08), transparent),
+                radial-gradient(ellipse 600px 400px at 80% 30%, rgba(6, 182, 212, 0.06), transparent),
+                radial-gradient(ellipse 500px 500px at 50% 80%, rgba(16, 185, 129, 0.04), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Noise texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 900;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .nav-brand-text {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-link.active {
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn-home svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Hero Header */
+        .hero {
+            padding: 64px 0 48px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 100px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent-blue);
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .hero-date .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero-sub span {
+            color: var(--text-secondary);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-icon.bond {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .section-icon.weather {
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .section-icon.news {
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .section-icon.archive {
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .section-badge {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        /* Bond Cards */
+        .bond-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .bond-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bond-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .bond-card.up::before {
+            background: linear-gradient(90deg, var(--accent-emerald), rgba(16, 185, 129, 0.3));
+        }
+
+        .bond-card.down::before {
+            background: linear-gradient(90deg, var(--accent-rose), rgba(244, 63, 94, 0.3));
+        }
+
+        .bond-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .bond-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .bond-code {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .bond-value {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .bond-value.up { color: var(--accent-emerald); }
+        .bond-value.down { color: var(--accent-rose); }
+        .bond-value.flat { color: var(--text-primary); }
+
+        .bond-change {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .bond-change.up { color: var(--accent-emerald); }
+        .bond-change.down { color: var(--accent-rose); }
+        .bond-change.flat { color: var(--text-muted); }
+
+        .bond-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .bond-detail {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .bond-detail strong {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .bond-summary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bond-summary-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .bond-summary-value {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--accent-emerald);
+        }
+
+        .bond-summary-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Weather Section */
+        .weather-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .weather-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .weather-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .weather-location {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .weather-main-temp {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .weather-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .weather-range {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .weather-icon-large {
+            font-size: 64px;
+            line-height: 1;
+            opacity: 0.9;
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            position: relative;
+        }
+
+        .weather-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .weather-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-light);
+        }
+
+        .weather-item-icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .weather-item-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .weather-item-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .weather-alert {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            font-size: 13px;
+            color: var(--accent-emerald);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .weather-alert.has-warning {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: rgba(245, 158, 11, 0.2);
+            color: var(--accent-amber);
+        }
+
+        /* News Section */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .news-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .news-item:hover {
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .news-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-amber);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .news-item:hover::before {
+            opacity: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .news-tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .news-tag.ipo { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); }
+        .news-tag.product { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+        .news-tag.platform { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .news-tag.model { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
+        .news-tag.policy { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+        .news-tag.research { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+        .news-tag.funding { background: rgba(236, 72, 153, 0.15); color: #ec4899; }
+
+        .news-source {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .news-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.5;
+            transition: color 0.2s;
+        }
+
+        .news-item:hover .news-title {
+            color: var(--accent-cyan);
+        }
+
+        .news-summary {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .news-trend {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        .news-trend::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-amber), var(--accent-rose), var(--accent-blue));
+            border-radius: 14px 14px 0 0;
+        }
+
+        .news-trend-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-amber);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .news-trend-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Archive Section */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .archive-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .archive-item:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.06);
+        }
+
+        .archive-item.current {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.08);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 0 32px;
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .footer-text a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: 2px;
+            }
+
+            .bond-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .weather-main-temp {
+                font-size: 44px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .bond-value {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav">
+    <div class="nav-inner">
+        <a href="https://boss2356.github.io/daily-push" class="nav-brand">
+            <div class="nav-brand-icon">日</div>
+            <span class="nav-brand-text">每日日报</span>
+        </a>
+        <div class="nav-links">
+            <a href="#bonds" class="nav-link active">债券</a>
+            <a href="#weather" class="nav-link">天气</a>
+            <a href="#news" class="nav-link">AI新闻</a>
+            <a href="#archive" class="nav-link">归档</a>
+        </div>
+        <a href="https://www.boss2356.github.io/" class="btn-home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            返回主页
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-date">
+            <span class="dot"></span>
+            2026年6月12日 自动推送
+        </div>
+        <h1>每 日 日 报</h1>
+        <p class="hero-sub">
+            农历丙午年四月廿七 · <span>星期五</span> · 双子座
+        </p>
+    </header>
+
+    <!-- Bonds Section -->
+    <section class="section" id="bonds">
+        <div class="section-header">
+            <div class="section-icon bond">📊</div>
+            <h2 class="section-title">债券追踪</h2>
+            <span class="section-badge">净值更新</span>
+        </div>
+
+        <div class="bond-grid">
+            <!-- Bond 1 -->
+            <a href="https://fund.eastmoney.com/015405.html" target="_blank" class="bond-card flat" style="text-decoration:none;color:inherit;">
+                <div class="bond-name">嘉实90天滚动持有短债C</div>
+                <div class="bond-code">015405</div>
+                <div class="bond-value flat">1.1023</div>
+                <div class="bond-change flat">0.00% · 持平</div>
+                <div class="bond-details">
+                    <div class="bond-detail">持有 <strong>521.37元</strong></div>
+                    <div class="bond-detail">份额 <strong>~473.03份</strong></div>
+                    <div class="bond-detail">日盈亏 <strong>±0.00元</strong></div>
+                    <div class="bond-detail">日期 <strong>06-03</strong></div>
+                </div>
+            </a>
+
+            <!-- Bond 2 -->
+            <a href="https://fund.eastmoney.com/014595.html" target="_blank" class="bond-card down" style="text-decoration:none;color:inherit;">
+                <div class="bond-name">汇添富稳福60天滚动持有中短债C</div>
+                <div class="bond-code">014595</div>
+                <div class="bond-value down">1.1017</div>
+                <div class="bond-change down">-0.01% · 微跌</div>
+                <div class="bond-details">
+                    <div class="bond-detail">持有 <strong>500.45元</strong></div>
+                    <div class="bond-detail">份额 <strong>~454.24份</strong></div>
+                    <div class="bond-detail">日盈亏 <strong>-0.05元</strong></div>
+                    <div class="bond-detail">日期 <strong>06-05</strong></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="bond-summary">
+            <div>
+                <div class="bond-summary-label">持仓总市值</div>
+                <div class="bond-summary-sub">两只债券合计</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="bond-summary-value">1,021.82</div>
+                <div class="bond-summary-sub">日变动 -0.05元</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Section -->
+    <section class="section" id="weather">
+        <div class="section-header">
+            <div class="section-icon weather">🌤️</div>
+            <h2 class="section-title">天气推送</h2>
+            <span class="section-badge">额尔古纳</span>
+        </div>
+
+        <a href="https://www.tianqi.com/eerguna/" target="_blank" class="weather-card" style="text-decoration:none;color:inherit;display:block;">
+            <div class="weather-top">
+                <div>
+                    <div class="weather-location">📍 内蒙古 · 额尔古纳市</div>
+                    <div class="weather-main-temp">21°</div>
+                    <div class="weather-desc">晴</div>
+                    <div class="weather-range">7°C ~ 21°C · 体感舒适</div>
+                </div>
+                <div class="weather-icon-large">☀️</div>
+            </div>
+
+            <div class="weather-grid">
+                <div class="weather-item">
+                    <div class="weather-item-icon">💧</div>
+                    <div class="weather-item-label">降水概率</div>
+                    <div class="weather-item-value">0%</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-icon">☀️</div>
+                    <div class="weather-item-label">紫外线</div>
+                    <div class="weather-item-value">弱-中等</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-icon">💨</div>
+                    <div class="weather-item-label">风力</div>
+                    <div class="weather-item-value">东北风 3-4级</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-icon">🌅</div>
+                    <div class="weather-item-label">日出</div>
+                    <div class="weather-item-value">03:48</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-icon">🌇</div>
+                    <div class="weather-item-label">日落</div>
+                    <div class="weather-item-value">20:09</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-icon">🫧</div>
+                    <div class="weather-item-label">空气质量</div>
+                    <div class="weather-item-value">优</div>
+                </div>
+            </div>
+
+            <div class="weather-alert">
+                ✅ 今日无自然灾害预警，适宜出行
+            </div>
+        </a>
+    </section>
+
+    <!-- AI News Section -->
+    <section class="section" id="news">
+        <div class="section-header">
+            <div class="section-icon news">🤖</div>
+            <h2 class="section-title">AI 行业热点</h2>
+            <span class="section-badge">2026.06.12</span>
+        </div>
+
+        <div class="news-list">
+            <a href="https://m.163.com/dy/article/KV7CBK7A0518E4C8.html" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag ipo">IPO</span>
+                    <span class="news-source">网易新闻 / 新浪财经</span>
+                </div>
+                <div class="news-title">OpenAI 与 Anthropic 双双秘密递交 IPO 申请，AI 资本竞赛进入冲刺阶段</div>
+                <div class="news-summary">OpenAI 于6月8日秘密提交 S-1 招股书，最快9月上市，估值预期最高达1万亿美元；Anthropic 于6月1日递表，投后估值9650亿美元。两家前沿模型公司几乎同时冲击公开市场，标志 AI 行业从技术竞赛正式进入资本收获期。</div>
+            </a>
+
+            <a href="https://blog.csdn.net/debug_fan/article/details/161870420" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag product">产品</span>
+                    <span class="news-source">EFE / CSDN</span>
+                </div>
+                <div class="news-title">Anthropic 发布 Claude Fable 5 与 Mythos 5，首次向公众开放 Mythos 级能力</div>
+                <div class="news-summary">6月9日推出 Claude Fable 5（通用可用）和 Claude Mythos 5（受限访问），将此前仅限网络安全合作伙伴的顶级能力首次推向大众，在几乎所有基准测试中超越此前所有公开 Claude 模型。</div>
+            </a>
+
+            <a href="https://m.163.com/dy/article/KV7CBK7A0518E4C8.html" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag platform">平台</span>
+                    <span class="news-source">网易新闻 / CSDN</span>
+                </div>
+                <div class="news-title">Apple WWDC 2026 发布全新 Siri AI，正式进入 Agent 时代</div>
+                <div class="news-summary">Apple 发布全新 Siri AI，支持全系统访问、屏幕内容读取、跨应用交互、个性化对话记忆，拥有独立 App 和云同步对话历史。Siri 从语音助手升级为真正的 AI Agent，AI 竞争上升至操作系统层面。</div>
+            </a>
+
+            <a href="https://blog.csdn.net/debug_fan/article/details/161870420" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag model">模型</span>
+                    <span class="news-source">CSDN</span>
+                </div>
+                <div class="news-title">微软发布七大自研 MAI 模型家族，宣布"从 OpenAI 获释"独立追求超级智能</div>
+                <div class="news-summary">Microsoft Build 2026 上发布首款从零训练的 35B 参数推理模型 MAI-Thinking-1 及多模态模型族。CEO 宣布微软已获准独立追求超级智能研究，不再受 FLOPS 上限和 AGI 研究禁令约束。</div>
+            </a>
+
+            <a href="http://m.toutiao.com/group/7650466548041237046/" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag policy">政策</span>
+                    <span class="news-source">头条 / 欧盟委员会</span>
+                </div>
+                <div class="news-title">欧盟正式发布《人工智能生成内容标记与标签行为准则》</div>
+                <div class="news-summary">欧盟委员会于6月10日正式发布该准则，落实 AI Act 透明度要求。自2026年8月2日起，Deepfake 内容及涉及公共利益事项的 AI 生成文本必须明确标注，聊天机器人也需告知用户其正在与 AI 互动。</div>
+            </a>
+
+            <a href="http://m.toutiao.com/group/7650415844043883059/" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag research">研究</span>
+                    <span class="news-source">环球网</span>
+                </div>
+                <div class="news-title">第八届北京智源大会开幕，发布"悟界"系列世界模型</div>
+                <div class="news-summary">6月12日，第八届北京智源大会开幕，发布全球首个通用世界基座模型"悟界·Physis-v0.1"、多模态神经科学大模型 Brain-mu1.0 等重磅成果，推动 AI 从数字世界迈向物理世界。</div>
+            </a>
+
+            <a href="https://hipther.com/latest-news/2026/06/11/113298/" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag model">模型</span>
+                    <span class="news-source">Hipther</span>
+                </div>
+                <div class="news-title">Google 发布开源扩散模型 DiffusionGemma，探索文本生成速度新范式</div>
+                <div class="news-summary">Google 推出 DiffusionGemma，采用 26B MoE 架构，Apache 2.0 许可开源。基于文本扩散技术，在 GPU 上可实现最高 4 倍于传统自回归模型的文本生成速度，标志模型竞争从"谁更强"扩展至"谁更快"。</div>
+            </a>
+
+            <a href="http://m.toutiao.com/group/7650466548041237046/" target="_blank" class="news-item">
+                <div class="news-meta">
+                    <span class="news-tag funding">融资</span>
+                    <span class="news-source">华尔街日报</span>
+                </div>
+                <div class="news-title">贝佐斯联合创办 Prometheus AI，押注"通用人工智能工程师"</div>
+                <div class="news-summary">亚马逊创始人贝佐斯共同领导新 AI 企业 Prometheus，计划打造"通用人工智能工程师"用于自动化复杂工程设计与制造。公司估值约410亿美元，已筹集120亿美元，显示 AI 竞争正从软件开发延伸至实体工程制造。</div>
+            </a>
+        </div>
+
+        <div class="news-trend">
+            <div class="news-trend-label">▎今 日 趋 势 点 评</div>
+            <div class="news-trend-text">
+                2026年6月中旬的 AI 行业呈现出三条交织的主线：<strong>资本化、Agent 化和治理加速</strong>。OpenAI 与 Anthropic 近万亿估值的 IPO 冲刺、微软独立建模型体系、Apple Siri AI 进军 Agent 生态，共同表明 AI 竞争已从单纯的模型能力比拼，升级为"平台+硬件+生态"的全栈对抗。与此同时，欧盟 AI 内容标识准则落地、国际 AI 安全协调机制加速成型，预示着行业在狂飙突进的同时，安全合规与全球治理框架正在加速构建——但"谁有权定义规则"本身，正在成为新的博弈焦点。
+            </div>
+        </div>
+    </section>
+
+    <!-- Archive Section -->
+    <section class="section" id="archive">
+        <div class="section-header">
+            <div class="section-icon archive">📁</div>
+            <h2 class="section-title">历史归档</h2>
+            <span class="section-badge">日报存档</span>
+        </div>
+
+        <div class="archive-grid">
+            <a href="index.html" class="archive-item current">06-12<br><small>今天</small></a>
+            <div class="archive-item" style="opacity:0.4;cursor:default;">06-11<br><small>待生成</small></div>
+            <div class="archive-item" style="opacity:0.4;cursor:default;">06-10<br><small>待生成</small></div>
+            <div class="archive-item" style="opacity:0.4;cursor:default;">06-09<br><small>待生成</small></div>
+            <div class="archive-item" style="opacity:0.4;cursor:default;">06-08<br><small>待生成</small></div>
+            <div class="archive-item" style="opacity:0.4;cursor:default;">06-07<br><small>待生成</small></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">
+            每日自动推送 · 数据来源：<a href="https://fund.eastmoney.com/" target="_blank">天天基金</a> · <a href="https://www.tianqi.com/" target="_blank">天气网</a> · <a href="https://www.nmc.cn/" target="_blank">中国气象局</a><br>
+            Powered by <a href="https://boss2356.github.io/" target="_blank">BOSS2356</a> · <a href="https://github.com/BOSS2356/daily-push" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>
