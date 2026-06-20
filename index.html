@@ -3,946 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日日报 - 2026年6月19日</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <title>每日推送 - 2026年6月20日</title>
     <style>
         :root {
-            --bg-primary: #0a0e17;
-            --bg-secondary: #111827;
-            --bg-card: #1a2235;
-            --bg-card-hover: #1f2a40;
-            --accent-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
-            --accent-green: #10b981;
-            --accent-amber: #f59e0b;
-            --accent-red: #ef4444;
-            --accent-purple: #8b5cf6;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: #1e293b;
-            --border-glow: rgba(59, 130, 246, 0.3);
-            --gradient-1: linear-gradient(135deg, #3b82f6, #06b6d4);
-            --gradient-2: linear-gradient(135deg, #10b981, #06b6d4);
-            --gradient-3: linear-gradient(135deg, #8b5cf6, #ec4899);
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --success: #34a853;
+            --danger: #ea4335;
+            --warning: #fbbc04;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #202124;
+            --text-secondary: #5f6368;
+            --border: #dadce0;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Animated background */
-        .bg-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(ellipse 600px 600px at 20% 20%, rgba(59, 130, 246, 0.08), transparent),
-                radial-gradient(ellipse 500px 500px at 80% 80%, rgba(139, 92, 246, 0.06), transparent),
-                radial-gradient(ellipse 400px 400px at 50% 50%, rgba(6, 182, 212, 0.04), transparent);
-            animation: meshFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes meshFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(20px, -20px) scale(1.02); }
-            66% { transform: translate(-15px, 15px) scale(0.98); }
-        }
-
-        /* Grid pattern overlay */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Home button */
-        .home-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: rgba(26, 34, 53, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .home-btn:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
-            transform: translateY(-1px);
-        }
-
-        .home-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 100px;
-            font-size: 13px;
-            color: var(--accent-blue);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .header-badge .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(36px, 6vw, 64px);
-            font-weight: 900;
-            background: linear-gradient(135deg, #f1f5f9, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .header-date {
-            font-size: 18px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .header-date .lunar {
-            color: var(--accent-amber);
-            font-weight: 500;
-        }
-
-        .header-date .festival {
-            display: inline-block;
-            margin-left: 12px;
-            padding: 2px 10px;
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 6px;
-            color: var(--accent-amber);
-            font-size: 14px;
-        }
-
-        .header-divider {
-            width: 80px;
-            height: 2px;
-            background: var(--gradient-1);
-            margin: 24px auto 0;
-            border-radius: 1px;
-        }
-
-        /* Section styles */
-        .section {
-            margin-bottom: 40px;
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-
-        .section:nth-child(1) { animation-delay: 0.1s; }
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.3s; }
-        .section:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            font-size: 20px;
-        }
-
-        .section-icon.weather { background: rgba(6, 182, 212, 0.15); }
-        .section-icon.bond { background: rgba(16, 185, 129, 0.15); }
-        .section-icon.news { background: rgba(139, 92, 246, 0.15); }
-        .section-icon.archive { background: rgba(245, 158, 11, 0.15); }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* Card */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: var(--border-glow);
-            background: var(--bg-card-hover);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Weather section */
-        .weather-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .weather-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .weather-item:hover {
-            border-color: rgba(6, 182, 212, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .weather-item .label {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .weather-item .value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .weather-item .value.cyan { color: var(--accent-cyan); }
-        .weather-item .value.green { color: var(--accent-green); }
-        .weather-item .value.amber { color: var(--accent-amber); }
-        .weather-item .value.red { color: var(--accent-red); }
-
-        .weather-item .sub {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .weather-alert {
-            margin-top: 20px;
-            padding: 16px 20px;
-            background: rgba(245, 158, 11, 0.08);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-amber);
-        }
-
-        .weather-alert .alert-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--accent-amber);
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .weather-alert .alert-content {
-            font-size: 13px;
-            color: var(--text-secondary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
         }
-
-        .weather-summary {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(6, 182, 212, 0.06);
-            border: 1px solid rgba(6, 182, 212, 0.15);
-            border-radius: 12px;
+        .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(26,115,232,0.25);
         }
-
-        .weather-summary h4 {
-            font-size: 14px;
-            color: var(--accent-cyan);
-            margin-bottom: 8px;
+        header h1 { font-size: 2rem; margin-bottom: 8px; }
+        header p { opacity: 0.9; font-size: 1rem; }
+        .home-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
         }
-
-        .weather-summary p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Bond section */
-        .bond-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 20px;
-        }
-
-        .bond-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+        .home-btn:hover { background: rgba(255,255,255,0.35); }
+        .card {
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 24px;
-            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
         }
-
-        .bond-card:hover {
-            border-color: rgba(16, 185, 129, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .bond-card-header {
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-dark);
         }
-
-        .bond-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .bond-code {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .bond-change {
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .bond-change.up {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-        }
-
-        .bond-change.down {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
-        }
-
-        .bond-metrics {
+        .card h2 .icon { font-size: 1.5rem; }
+        .fund-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
-
-        .bond-metric .label {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        .bond-metric .value {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .bond-metric .value.small {
-            font-size: 16px;
-        }
-
-        .bond-summary {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(16, 185, 129, 0.06);
-            border: 1px solid rgba(16, 185, 129, 0.15);
+        .fund-item {
+            background: #f8f9fa;
             border-radius: 12px;
-        }
-
-        .bond-summary h4 {
-            font-size: 14px;
-            color: var(--accent-green);
-            margin-bottom: 8px;
-        }
-
-        .bond-summary p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* News section */
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .news-item {
-            display: flex;
-            gap: 16px;
-            padding: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-        }
-
-        .news-item:hover {
-            border-color: rgba(139, 92, 246, 0.3);
-            background: var(--bg-card-hover);
-            transform: translateX(4px);
-        }
-
-        .news-rank {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 900;
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--accent-purple);
-        }
-
-        .news-rank.top {
-            background: var(--gradient-3);
-            color: #fff;
-        }
-
-        .news-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .news-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-
-        .news-summary {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 8px;
-        }
-
-        .news-source {
-            font-size: 12px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .news-source a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .news-source a:hover {
-            color: var(--accent-cyan);
-        }
-
-        .trend-box {
-            margin-top: 20px;
-            padding: 20px 24px;
-            background: rgba(139, 92, 246, 0.06);
-            border: 1px solid rgba(139, 92, 246, 0.15);
-            border-radius: 14px;
-        }
-
-        .trend-box h4 {
-            font-size: 14px;
-            color: var(--accent-purple);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .trend-box p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.9;
-        }
-
-        /* Archive section */
-        .archive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
-        }
-
-        .archive-item {
             padding: 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+        }
+        .fund-item h3 { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 8px; }
+        .fund-item .value { font-size: 1.6rem; font-weight: 700; color: var(--text); }
+        .fund-item .change {
+            font-size: 0.9rem;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .up { color: var(--danger); }
+        .down { color: var(--success); }
+        .weather-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .weather-temp { font-size: 3rem; font-weight: 700; }
+        .weather-desc { font-size: 1.2rem; color: var(--text-secondary); }
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .detail-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .detail-item .label { font-size: 0.8rem; color: var(--text-secondary); }
+        .detail-item .val { font-size: 1.1rem; font-weight: 600; margin-top: 4px; }
+        .news-list { list-style: none; }
+        .news-item {
+            padding: 16px;
             border-radius: 12px;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
+            background: #f8f9fa;
+            margin-bottom: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .archive-item:hover {
-            border-color: rgba(245, 158, 11, 0.3);
+        .news-item:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-
-        .archive-item.current {
-            border-color: var(--accent-amber);
-            background: rgba(245, 158, 11, 0.08);
+        .news-item a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
         }
-
-        .archive-item .date {
-            font-size: 15px;
+        .news-item a:hover { color: var(--primary); }
+        .news-item .news-title {
             font-weight: 700;
-            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--primary-dark);
         }
-
-        .archive-item .weekday {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
+        .news-item .news-summary {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
         }
-
-        /* Footer */
-        .footer {
+        .news-item .news-source {
+            font-size: 0.8rem;
+            color: #80868b;
+        }
+        .trend-box {
+            background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            border-left: 4px solid var(--primary);
+        }
+        .trend-box h4 { color: var(--primary-dark); margin-bottom: 8px; }
+        .trend-box p { font-size: 0.95rem; color: var(--text-secondary); }
+        .archive-section { margin-top: 30px; }
+        .archive-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+        .archive-list li a {
+            display: block;
+            padding: 8px 16px;
+            background: #e8f0fe;
+            color: var(--primary-dark);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .archive-list li a:hover { background: #d2e3fc; }
+        footer {
             text-align: center;
-            padding: 40px 20px 30px;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
+            padding: 30px 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
         }
-
-        .footer p {
-            font-size: 13px;
-            color: var(--text-muted);
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 6px;
         }
-
-        .footer .gen-time {
-            margin-top: 4px;
-            font-size: 12px;
-            color: var(--text-muted);
-            opacity: 0.6;
+        .tag-product { background: #e8f5e9; color: #2e7d32; }
+        .tag-funding { background: #fff3e0; color: #ef6c00; }
+        .tag-tech { background: #e3f2fd; color: #1565c0; }
+        .tag-policy { background: #f3e5f5; color: #6a1b9a; }
+        @media (max-width: 600px) {
+            .fund-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.5rem; }
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container { padding: 12px; }
-            .header { padding: 40px 12px 24px; }
-            .home-btn { top: 12px; left: 12px; padding: 8px 14px; font-size: 12px; }
-            .bond-grid { grid-template-columns: 1fr; }
-            .weather-grid { grid-template-columns: repeat(2, 1fr); }
-            .news-item { flex-direction: column; gap: 10px; }
-            .section-title { font-size: 18px; }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid var(--warning);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #e65100;
         }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-primary); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
     </style>
 </head>
 <body>
-    <div class="bg-mesh"></div>
-    <div class="grid-overlay"></div>
-
-    <a href="https://www.boss2356.github.io/" class="home-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        返回主页
-    </a>
+    <header>
+        <h1>每日推送</h1>
+        <p>2026年6月20日 星期六 | 农历五月初六 | 夏至</p>
+        <a href="https://www.boss2356.github.io/" class="home-btn">返回主页</a>
+    </header>
 
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-badge">
-                <span class="dot"></span>
-                每日自动推送
+        <!-- 债券追踪 -->
+        <div class="card">
+            <h2><span class="icon">📈</span>债券追踪</h2>
+            <div class="fund-grid">
+                <div class="fund-item">
+                    <h3>嘉实90天滚动持有短债C (015405)</h3>
+                    <div class="value">1.1023</div>
+                    <div class="change up">+0.01% (+0.0001)</div>
+                    <div style="margin-top:8px;font-size:0.85rem;color:#5f6368;">
+                        持有金额: 521.37元<br>
+                        持有份额: ≈473.17份<br>
+                        最新市值: ≈521.42元<br>
+                        日收益: +0.05元
+                    </div>
+                </div>
+                <div class="fund-item">
+                    <h3>汇添富稳福60天滚动持有中短债C (014595)</h3>
+                    <div class="value">1.1017</div>
+                    <div class="change up">+0.01% (+0.0001)</div>
+                    <div style="margin-top:8px;font-size:0.85rem;color:#5f6368;">
+                        持有金额: 500.45元<br>
+                        持有份额: ≈454.26份<br>
+                        最新市值: ≈500.50元<br>
+                        日收益: +0.05元
+                    </div>
+                </div>
             </div>
-            <h1>DAILY REPORT</h1>
-            <div class="header-date">
-                2026年6月19日 星期五 &nbsp;|&nbsp; <span class="lunar">农历五月初五</span>
-                <span class="festival">端午节</span>
+            <div style="margin-top:16px;padding:12px;background:#e8f5e9;border-radius:10px;">
+                <strong>债券收益总结：</strong>今日两只短债基金均微涨0.01%，合计日收益约+0.10元，整体收益平稳。短债基金波动较小，适合稳健型投资者持有。
             </div>
-            <div class="header-divider"></div>
-        </header>
+        </div>
 
-        <!-- Weather Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon weather">&#9925;</div>
+        <!-- 天气推送 -->
+        <div class="card">
+            <h2><span class="icon">🌧️</span>额尔古纳今日天气</h2>
+            <div class="weather-main">
                 <div>
-                    <div class="section-title">额尔古纳天气</div>
-                    <div class="section-subtitle">内蒙古 · 呼伦贝尔 · 额尔古纳市</div>
+                    <div class="weather-temp">18°C</div>
+                    <div class="weather-desc">大雨 | 东风3级</div>
+                </div>
+                <div style="font-size:3rem;">🌧️</div>
+            </div>
+            <div class="weather-details">
+                <div class="detail-item">
+                    <div class="label">温度范围</div>
+                    <div class="val">11~23°C</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">降水</div>
+                    <div class="val">大雨</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">降水量</div>
+                    <div class="val">0.5mm+</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">降水概率</div>
+                    <div class="val">90%+</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">紫外线</div>
+                    <div class="val">最弱</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">风力</div>
+                    <div class="val">东风3级</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">相对湿度</div>
+                    <div class="val">85%</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">空气质量</div>
+                    <div class="val">优 (17)</div>
                 </div>
             </div>
-            <div class="card">
-                <div class="weather-grid">
-                    <div class="weather-item">
-                        <div class="label">天气状况</div>
-                        <div class="value cyan">多云转小雨</div>
-                        <div class="sub">夜间转中雨</div>
-                    </div>
-                    <div class="weather-item">
-                        <div class="label">温度范围</div>
-                        <div class="value">13°C ~ 24°C</div>
-                        <div class="sub">当前 21.8°C</div>
-                    </div>
-                    <div class="weather-item">
-                        <div class="label">降水概率</div>
-                        <div class="value amber">极高</div>
-                        <div class="sub">今晚至明晨明显降水</div>
-                    </div>
-                    <div class="weather-item">
-                        <div class="label">风力风向</div>
-                        <div class="value">西南风 2-3级</div>
-                        <div class="sub">夜间东南风 4-5级</div>
-                    </div>
-                    <div class="weather-item">
-                        <div class="label">紫外线强度</div>
-                        <div class="value green">弱</div>
-                        <div class="sub">无需特别防护</div>
-                    </div>
-                    <div class="weather-item">
-                        <div class="label">空气质量</div>
-                        <div class="value green">优</div>
-                        <div class="sub">AQI 28</div>
-                    </div>
-                </div>
+            <div class="warning-box">
+                <strong>⚠️ 自然灾害预警：</strong>雷电黄色预警 - 额尔古纳市气象台2026年6月18日发布雷电黄色预警信号，局部地区伴有短时强降水、雷暴大风、冰雹等强对流天气，请做好防范准备。
+            </div>
+            <div style="margin-top:12px;font-size:0.85rem;color:#5f6368;">
+                数据来源：<a href="http://www.nmc.cn/publish/forecast/ANM/eerguna.html" target="_blank">中国天气网</a>、<a href="https://m.map.360.cn/m/weather/index/adcode=150784" target="_blank">360天气</a>
+            </div>
+        </div>
 
-                <div class="weather-alert">
-                    <div class="alert-title">&#9888; 雷电黄色预警（III级/较重）</div>
-                    <div class="alert-content">
-                        额尔古纳市气象台发布：6小时内将发生雷电活动，局部地区伴有短时强降水、雷暴大风、冰雹等强对流天气。松辽水利委员会提示6月19日至21日额尔古纳河流域将有明显降雨过程，累计面雨量20~40毫米。
-                    </div>
-                </div>
-
-                <div class="weather-summary">
-                    <h4>&#128161; 天气总结</h4>
-                    <p>
-                        今日端午节，白天多云为主，气温舒适（13~24°C），空气质量优，适合外出活动。傍晚起转小雨，夜间有中雨并伴有雷电，风力增强至4-5级。建议外出携带雨具，注意雷电防护。端午节安康！
-                    </p>
-                </div>
-
-                <div style="margin-top: 16px; text-align: right;">
-                    <a href="https://www.weather.com.cn/weather1d/101081014.shtml" target="_blank" style="color: var(--accent-cyan); font-size: 13px; text-decoration: none;">
-                        查看天气详情 &#8594;
+        <!-- AI行业热点 -->
+        <div class="card">
+            <h2><span class="icon">🤖</span>今日AI行业热点新闻</h2>
+            <ul class="news-list">
+                <li class="news-item">
+                    <a href="https://blog.csdn.net/xyghehehehe/article/details/162054017" target="_blank">
+                        <div class="news-title"><span class="tag tag-product">产品</span>GPT-5.6发布在即与OpenAI IPO倒计时：150万Token上下文与万亿美元估值的双重赌注</div>
+                        <div class="news-summary">OpenAI进入成立以来最关键的双线作战节点——技术侧GPT-5.6（内部代号kindle-alpha）发布候选版已选定，150万Token上下文窗口将单次处理能力推至整部《三体》三部曲量级；资本侧已向SEC秘密提交S-1文件，预计一年内上市。</div>
+                        <div class="news-source">来源：CSDN / 新浪财经 / 51CTO</div>
                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bond Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon bond">&#128176;</div>
-                <div>
-                    <div class="section-title">债券收益追踪</div>
-                    <div class="section-subtitle">数据更新至 2026-06-18 · 天天基金</div>
-                </div>
-            </div>
-            <div class="bond-grid">
-                <!-- Bond 1 -->
-                <div class="bond-card">
-                    <div class="bond-card-header">
-                        <div>
-                            <div class="bond-name">嘉实90天滚动持有短债C</div>
-                            <div class="bond-code">015405</div>
-                        </div>
-                        <div class="bond-change up">+0.01%</div>
-                    </div>
-                    <div class="bond-metrics">
-                        <div class="bond-metric">
-                            <div class="label">单位净值</div>
-                            <div class="value">1.1023</div>
-                        </div>
-                        <div class="bond-metric">
-                            <div class="label">累计净值</div>
-                            <div class="value">1.1023</div>
-                        </div>
-                        <div class="bond-metric">
-                            <div class="label">持有金额</div>
-                            <div class="value small">521.37 元</div>
-                        </div>
-                        <div class="bond-metric">
-                            <div class="label">日收益估算</div>
-                            <div class="value small green">+0.05 元</div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 12px; text-align: right;">
-                        <a href="https://fund.eastmoney.com/015405.html" target="_blank" style="color: var(--accent-green); font-size: 13px; text-decoration: none;">
-                            查看基金详情 &#8594;
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Bond 2 -->
-                <div class="bond-card">
-                    <div class="bond-card-header">
-                        <div>
-                            <div class="bond-name">汇添富稳福60天滚动持有中短债C</div>
-                            <div class="bond-code">014595</div>
-                        </div>
-                        <div class="bond-change up">+0.01%</div>
-                    </div>
-                    <div class="bond-metrics">
-                        <div class="bond-metric">
-                            <div class="label">单位净值</div>
-                            <div class="value">1.1017</div>
-                        </div>
-                        <div class="bond-metric">
-                            <div class="label">累计净值</div>
-                            <div class="value">1.1037</div>
-                        </div>
-                        <div class="bond-metric">
-                            <div class="label">持有金额</div>
-                            <div class="value small">500.45 元</div>
-                        </div>
-                        <div class="bond-metric">
-                            <div class="label">日收益估算</div>
-                            <div class="value small green">+0.05 元</div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 12px; text-align: right;">
-                        <a href="https://fund.eastmoney.com/014595.html" target="_blank" style="color: var(--accent-green); font-size: 13px; text-decoration: none;">
-                            查看基金详情 &#8594;
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bond-summary">
-                <h4>&#128200; 收益总结</h4>
-                <p>
-                    两只短债基金今日均微涨 +0.01%，运行稳健。嘉实90天短债C（015405）净值 1.1023，汇添富稳福60天中短债C（014595）净值 1.1017。按持仓估算，今日合计收益约 +0.10 元。短债基金整体表现平稳，适合低风险配置。
-                </p>
-            </div>
-        </section>
-
-        <!-- AI News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon news">&#129302;</div>
-                <div>
-                    <div class="section-title">AI 行业热点</div>
-                    <div class="section-subtitle">2026年6月19日 · 全球人工智能动态</div>
-                </div>
-            </div>
-
-            <div class="news-list">
-                <a class="news-item" href="http://m.toutiao.com/group/7652908103406600755/" target="_blank">
-                    <div class="news-rank top">1</div>
-                    <div class="news-content">
-                        <div class="news-title">中国八部门联合发布《加快"人工智能+消费"实施意见》</div>
-                        <div class="news-summary">商务部等八部门发布17项扶持政策，设立AI终端分级国家标准，开放统一开发SDK，打通AI手机、AI PC、人形机器人跨设备互联接口，将AI消费提升至国家战略级赛道。</div>
-                        <div class="news-source">来源：今日头条</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="http://m.toutiao.com/group/7652948256757989931/" target="_blank">
-                    <div class="news-rank top">2</div>
-                    <div class="news-content">
-                        <div class="news-title">智谱 GLM-5.2 登顶全球开源模型榜首</div>
-                        <div class="news-summary">智谱的GLM-5.2在权威独立评测机构Artificial Analysis上超越Meta Llama、Mistral等，登顶开源权重模型世界第一，标志着中国大模型首次在开源赛道获得全球话语权。</div>
-                        <div class="news-source">来源：今日头条</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="https://blog.csdn.net/haohaizi_liu/article/details/162101475" target="_blank">
-                    <div class="news-rank top">3</div>
-                    <div class="news-content">
-                        <div class="news-title">Transformer 之父 Noam Shazeer 从谷歌跳槽 OpenAI</div>
-                        <div class="news-summary">Transformer论文共同作者、谷歌DeepMind工程副总裁兼Gemini联合负责人Noam Shazeer宣布加入OpenAI出任架构研究负责人，被视为大模型架构探索进入"后Transformer时代"的关键信号。</div>
-                        <div class="news-source">来源：CSDN</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="https://blog.csdn.net/haohaizi_liu/article/details/162101475" target="_blank">
-                    <div class="news-rank">4</div>
-                    <div class="news-content">
-                        <div class="news-title">DeepSeek 首轮融资510亿元落地，刷新国产大模型融资纪录</div>
-                        <div class="news-summary">DeepSeek完成约510亿元人民币（约74亿美元）A轮融资，创始人梁文锋个人出资200亿占比近四成，腾讯、宁德时代、京东、网易等参投，距启动融资仅两个多月。</div>
-                        <div class="news-source">来源：CSDN</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="http://m.toutiao.com/group/7652948256757989931/" target="_blank">
-                    <div class="news-rank">5</div>
-                    <div class="news-content">
-                        <div class="news-title">华为用千块昇腾910C国产芯片完成DeepSeek V4 Pro后训练</div>
-                        <div class="news-summary">华为使用约1000块昇腾910C国产芯片成功完成DeepSeek V4 Pro（1.6万亿参数）后训练，证明在不依赖NVIDIA高端GPU条件下仍可训练超大规模模型，对全球AI芯片格局冲击深远。</div>
-                        <div class="news-source">来源：今日头条</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="https://blog.csdn.net/haohaizi_liu/article/details/162101475" target="_blank">
-                    <div class="news-rank">6</div>
-                    <div class="news-content">
-                        <div class="news-title">全球人工智能、安全与伦理大会在日内瓦召开</div>
-                        <div class="news-summary">6月18日于瑞士日内瓦开幕的为期两天会议，聚焦AI军事化风险、开源与闭源治理、AI伦理国际标准制定等核心议题，正值欧盟AI法案全面生效倒计时，被视为下半年全球AI治理议程的关键节点。</div>
-                        <div class="news-source">来源：CSDN</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="https://blog.csdn.net/haohaizi_liu/article/details/162101475" target="_blank">
-                    <div class="news-rank">7</div>
-                    <div class="news-content">
-                        <div class="news-title">科创板第五套上市标准扩至AI大模型企业</div>
-                        <div class="news-summary">上交所发布指引，支持尚未形成一定收入规模的优质AI大模型企业适用科创板第五套上市标准，A股人工智能板块应声上涨，中证人工智能产业指数早盘涨1.46%。</div>
-                        <div class="news-source">来源：CSDN</div>
-                    </div>
-                </a>
-
-                <a class="news-item" href="http://m.toutiao.com/group/7652908103406600755/" target="_blank">
-                    <div class="news-rank">8</div>
-                    <div class="news-content">
-                        <div class="news-title">马斯克公开太空AI算力布局方案</div>
-                        <div class="news-summary">马斯克公布将AI服务器部署于近地轨道的计划，依托太空恒稳太阳能供电和真空低温散热降低算力成本，计划两年内建成规模化太空算力集群。</div>
-                        <div class="news-source">来源：今日头条</div>
-                    </div>
-                </a>
-            </div>
-
+                </li>
+                <li class="news-item">
+                    <a href="https://blog.csdn.net/2401_84289488/article/details/162005680" target="_blank">
+                        <div class="news-title"><span class="tag tag-funding">融资</span>DeepSeek首轮融资超500亿元，投后估值直奔4000亿，刷新全球AI单轮融资纪录</div>
+                        <div class="news-summary">国产大模型公司DeepSeek官宣完成首轮外部融资超500亿元，投后估值达3500-4000亿元，投资方包括腾讯、宁德时代、国家AI产业基金、淡马锡等，创始人梁文锋个人出资200亿元跟投。</div>
+                        <div class="news-source">来源：CSDN / 36氪</div>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="https://www.woshipm.com/ai/6399044.html" target="_blank">
+                        <div class="news-title"><span class="tag tag-product">产品</span>Google I/O 2026全整理：Gemini 3.5发布、Omni世界模型、Spark私人AI Agent首秀</div>
+                        <div class="news-summary">谷歌年度发布会以「agentic era」为主题，Gemini 3.5 Flash速度达同级模型4倍，Omni多模态世界模型可从任意输入生成任意输出，Spark私人AI Agent支持7×24后台执行，搜索框25年来最大改版。</div>
+                        <div class="news-source">来源：人人都是产品经理</div>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="https://juejin.cn/post/7650390724475453475" target="_blank">
+                        <div class="news-title"><span class="tag tag-funding">融资</span>SpaceX以1.77万亿美元估值完成史上最大规模IPO，xAI为核心驱动因素之一</div>
+                        <div class="news-summary">SpaceX以每股135美元定价完成750亿美元融资，估值达1.77万亿美元，6月12日纳斯达克上市，创下史上最大IPO纪录。30%股份面向散户，Elon Musk有望成全球首位万亿富翁。</div>
+                        <div class="news-source">来源：掘金 / CNBC</div>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="https://juejin.cn/post/7649312912218718259" target="_blank">
+                        <div class="news-title"><span class="tag tag-product">产品</span>苹果WWDC 2026：Siri AI全面重构，库克最后一次CEO演讲，AI塞进每一个角落</div>
+                        <div class="news-summary">Siri从弹窗式语音助手进化为独立App，底层搭载苹果与Google合作定制的Gemini模型；iOS 27 App启动速度提升30%；Apple Intelligence第二代设备端模型发布。库克将于9月1日卸任。</div>
+                        <div class="news-source">来源：掘金 / The Verge</div>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="https://blog.csdn.net/2401_84289488/article/details/162030913" target="_blank">
+                        <div class="news-title"><span class="tag tag-policy">政策</span>美国AI人才管制全面升级：非美籍员工禁参与前沿大模型研发，Anthropic全球停服发酵</div>
+                        <div class="news-summary">美国商务部将限制范围从Claude Fable 5扩大至全美头部AI企业前沿研发业务，非美国国籍员工不得参与最高阶通用大模型研发。Anthropic模型全球无差别停服，开发者紧急转向开源与国产替代。</div>
+                        <div class="news-source">来源：CSDN / The Verge</div>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="https://blog.csdn.net/haohaizi_liu/article/details/162101475" target="_blank">
+                        <div class="news-title"><span class="tag tag-tech">技术</span>Transformer之父Noam Shazeer跳槽OpenAI，大模型架构战再升级</div>
+                        <div class="news-summary">Transformer论文作者之一、谷歌DeepMind工程副总裁兼Gemini联合负责人Noam Shazeer宣布加入OpenAI，将主导下一代大模型架构研发，引发硅谷"人才地震"。</div>
+                        <div class="news-source">来源：CSDN / Reuters</div>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="https://blog.csdn.net/2401_84289488/article/details/162005680" target="_blank">
+                        <div class="news-title"><span class="tag tag-policy">政策</span>国内首个具身智能行业标准正式实施，中央网信办严打14类AI乱象</div>
+                        <div class="news-summary">YD/T 6770-2026《具身智能机器人技术要求》正式落地，明确机器人环境感知、运动控制等四大核心指标。同日中央网信办开设"涉AI应用乱象举报专区"，专项受理14类违规举报。</div>
+                        <div class="news-source">来源：CSDN / 中央网信办</div>
+                    </a>
+                </li>
+            </ul>
             <div class="trend-box">
-                <h4>&#128202; 今日趋势点评</h4>
-                <p>
-                    今日AI行业呈现"中国突破+全球治理"的双主线格局。中国在开源模型（GLM-5.2登顶）和自主算力（昇腾芯片训练万亿参数模型）两个维度同时取得里程碑式突破，配合国家层面的"AI+消费"政策红利和资本市场松绑信号，标志着中国AI产业正从技术追赶转向生态引领。与此同时，全球AI治理进入加速期——日内瓦大会、欧盟AI法案倒计时、各国主权AI模型的涌现，都预示着AI技术红利正在从"全球共享"走向"阵营分化"，行业竞争已从单纯的技术比拼升级为包含算力、标准、治理规则在内的全方位博弈。
-                </p>
+                <h4>📊 今日趋势点评</h4>
+                <p>2026年6月，AI产业正经历"超级发布月"与"资本狂欢"的双重叠加：OpenAI、Anthropic、Google等海外巨头密集发布新一代大模型，上下文窗口突破150万Token成为标配；同时DeepSeek 500亿融资、SpaceX 1.77万亿IPO等资本事件刷新全球纪录。监管层面，美国AI人才管制升级与国产行业标准落地形成鲜明对比，全球AI产业正加速分化为"技术能力竞赛"与"主权管控博弈"两大主线。</p>
             </div>
-        </section>
+        </div>
 
-        <!-- Archive Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon archive">&#128197;</div>
-                <div>
-                    <div class="section-title">日报归档</div>
-                    <div class="section-subtitle">历史日报记录</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="archive-grid">
-                    <a class="archive-item current" href="#">
-                        <div class="date">06-19</div>
-                        <div class="weekday">今天 · 端午节</div>
-                    </a>
-                </div>
-                <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 16px;">
-                    更多历史日报将持续归档于此
-                </p>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>每日自动推送 · 由 BOSS2356 自动生成</p>
-            <p class="gen-time">生成时间：2026年6月19日</p>
-        </footer>
+        <!-- 归档 -->
+        <div class="card archive-section">
+            <h2><span class="icon">📁</span>历史归档</h2>
+            <ul class="archive-list">
+                <li><a href="index.html">2026年6月20日</a></li>
+            </ul>
+            <p style="margin-top:12px;font-size:0.85rem;color:#5f6368;">每日更新，历史数据自动归档于此。</p>
+        </div>
     </div>
+
+    <footer>
+        <p>每日推送 | 自动生成于 2026-06-20 | 数据来源：天天基金网、中国天气网、公开市场信息</p>
+        <p style="margin-top:8px;"><a href="https://www.boss2356.github.io/" style="color:var(--primary);">返回主页</a></p>
+    </footer>
 </body>
 </html>
